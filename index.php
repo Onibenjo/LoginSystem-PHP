@@ -29,17 +29,7 @@ require_once "incl/config.php"
     </p>
 </div>
 
-
-
-
-
-
-
-
 <?php require_once "incl/footer.php" ?>
 
 </body>
 </html>
-
-
-
