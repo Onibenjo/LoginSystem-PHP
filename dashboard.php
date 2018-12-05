@@ -3,7 +3,8 @@
 define('__CONFIG__', true);
 //Require the config
 require_once "incl/config.php";
-echo 'This is ' . $_SESSION['user_id'] . 'is ur user id';
+
+forceLogin();
 
 ?>
 
@@ -21,9 +22,10 @@ echo 'This is ' . $_SESSION['user_id'] . 'is ur user id';
 <body>
 
 <div class="uk-section uk-container">
-   Welcome, user <?php
-                echo $_SESSION['user_id'];
-                ?>
+  Dashboard here; <br/> <?php
+                        echo 'You are signed in as user ' . $_SESSION['user_id'];
+                        ?>
+                
 </div>
 
 <?php require_once "incl/footer.php" ?>
