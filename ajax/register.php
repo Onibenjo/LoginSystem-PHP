@@ -25,7 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //User does not exist, add them
 
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
         $addUser = $con->prepare("INSERT INTO logintable( email, password) VALUES(LOWER(:email), :password)");
+
         $addUser->bindParam(':email', $email, PDO::PARAM_STR);
         $addUser->bindParam(':password', $password, PDO::PARAM_STR);
         $addUser->execute();

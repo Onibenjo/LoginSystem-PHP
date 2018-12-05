@@ -12,7 +12,7 @@ require_once "incl/config.php"
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="robots" content="follow">
-    <title>Login Page</title>
+    <title>Login into your account</title>
     <!-- UIKit css -->
     <link rel="stylesheet" href="assets/css/uikit.min.css">
 </head>

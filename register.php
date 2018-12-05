@@ -13,7 +13,7 @@ require_once "incl/config.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="robots" content="follow">
-    <title>Login Page</title>
+    <title>Register an account</title>
     <!-- UIKit css -->
     <link rel="stylesheet" href="assets/css/uikit.min.css">
 </head>
@@ -26,14 +26,12 @@ require_once "incl/config.php";
                 <h2>Register</h2>
                 <label class="uk-form-label" for="form-stacked-text">Email</label>
                 <div class="uk-form-controls">
-                <span class="uk-form-icon" uk-icon="icon: user"></span>
                     <input class="uk-input" id="form-stacked-text" type="email" required="required" placeholder="Enter your email address">
                 </div>
             </div>
             <div class="uk-margin">
                 <label class="uk-form-label" for="form-stacked-text2">Password</label>
                 <div class="uk-form-controls">
-                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
                     <input class="uk-input" id="form-stacked-text2" 
                     type="password" required="required" placeholder="Enter your Password">
                 </div>
