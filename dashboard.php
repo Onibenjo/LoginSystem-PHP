@@ -6,19 +6,7 @@ require_once "incl/config.php";
 
 Page::forceLogin();
 
-$user_id = $_SESSION['user_id'];
-$getUserInfo = $con->prepare("SELECT email, date FROM logintable WHERE user_id = :user_id LIMIT 1");
-$getUserInfo->bindParam(':user_id', $user_id, PDO::PARAM_STR);
-$getUserInfo->execute();
-
-if ($getUserInfo->rowCount() == 1) {
-    $user = $getUserInfo->fetch(PDO::FETCH_ASSOC);
-
-} else {
-    // User is not signed in
-    header('Location: logout.php');
-    exit;
-}
+$User = new User($_SESSION['user_id']);
 
 ?>
 
@@ -38,8 +26,9 @@ if ($getUserInfo->rowCount() == 1) {
 <div class="uk-section uk-container">
 
     <h1>Dashboard</h1>
-    <p>Hello <?php echo $user['email']; ?>, you registered at <?php echo $user['date']; ?>
-    </p>
+    
+      <p>Hello <?php echo $User->email; ?>, you registered at <?php echo $User->reg_time; ?></p>
+      
     <p><a href="logout.php">Logout</a></p>
                 
 </div>
