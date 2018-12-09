@@ -3,7 +3,7 @@
 define('__CONFIG__', true);
 //Require the config
 require_once "incl/config.php";
-forceDashboard();
+Page::forceDashboard();
 ?>
 
 <!DOCTYPE html>
@@ -26,14 +26,14 @@ forceDashboard();
             <div class="uk-margin">
                 <label class="uk-form-label" for="form-stacked-text2">Email</label>
                 <div class="uk-form-controls">
-                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                
                     <input class="uk-input" id="form-stacked-text2" type="email" required="required" placeholder="Enter your email address">
                 </div>
             </div>
             <div class="uk-margin">
                 <label class="uk-form-label" for="form-stacked-text">Password</label>
                 <div class="uk-form-controls">
-                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+
                     <input class="uk-input" id="form-stacked-text" 
                     type="password" required="required" placeholder="Enter your Password">
                 </div>
@@ -46,12 +46,6 @@ forceDashboard();
         </form>
     </div>
 </div>
-
-
-
-
-
-
 
 
 <?php require_once "incl/footer.php" ?>

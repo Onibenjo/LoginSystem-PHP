@@ -13,13 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = Filter::String($_POST['email']);
     
     // Make sure the user does not exist
-    $findUser = $con->prepare("SELECT user_id FROM logintable WHERE email = LOWER(:email) LIMIT 1");
-    $findUser->bindParam(':email', $email, PDO::PARAM_STR);
-    $findUser->execute();
+    $userFound = User::find($email);
 
-    if ($findUser->rowCount() == 1) {
+    if ($userFound) {
         //User exist
-        $return['error'] = "A user with this email address already exists";
+        $return['error'] = "You already have an account!";
         $return['isLoggedIn'] = false;
     } else {
         //User does not exist, add them
@@ -35,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user_id = $con->lastInsertId();
 
         $_SESSION['user_id'] = (int)$user_id;
-        $return['redirect'] = 'dashboard.php?welcome-here';
+        $return['redirect'] = 'dashboard.php';
         $return['isLoggedIn'] = true;
     }
 

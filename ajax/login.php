@@ -6,7 +6,7 @@ require_once "../incl/config.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Always return JSON format
-    header('Content-Type: application/json');
+    // header('Content-Type: application/json');
 
     $return = [];
 
@@ -15,16 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     // Make sure the user does not exist
-    $findUser = $con->prepare("SELECT user_id, password FROM logintable WHERE email = LOWER(:email) LIMIT 1");
-    $findUser->bindParam(':email', $email, PDO::PARAM_STR);
-    $findUser->execute();
+    $userFound = User::find($email, true);
 
-    if ($findUser->rowCount() == 1) {
+    if ($userFound) {
         //User exist, sign them in
-        $user = $findUser->fetch(PDO::FETCH_ASSOC);
-
-        $user_id = (int)$user['user_id'];
-        $hash = (string)$user['password'];
+        $user_id = (int)$userFound['user_id'];
+        $hash = (string)$userFound['password'];
 
         if (password_verify($password, $hash)) {
             //User is signed in
@@ -49,3 +45,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit("Invalid URL");
 }
 ?>
+

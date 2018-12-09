@@ -4,7 +4,21 @@ define('__CONFIG__', true);
 //Require the config
 require_once "incl/config.php";
 
-forceLogin();
+Page::forceLogin();
+
+$user_id = $_SESSION['user_id'];
+$getUserInfo = $con->prepare("SELECT email, date FROM logintable WHERE user_id = :user_id LIMIT 1");
+$getUserInfo->bindParam(':user_id', $user_id, PDO::PARAM_STR);
+$getUserInfo->execute();
+
+if ($getUserInfo->rowCount() == 1) {
+    $user = $getUserInfo->fetch(PDO::FETCH_ASSOC);
+
+} else {
+    // User is not signed in
+    header('Location: logout.php');
+    exit;
+}
 
 ?>
 
@@ -15,16 +29,18 @@ forceLogin();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="robots" content="follow">
-    <title>Dashboard Page</title>
+    <title>Dashboard</title>
     <!-- UIKit css -->
     <link rel="stylesheet" href="assets/css/uikit.min.css">
 </head>
 <body>
 
 <div class="uk-section uk-container">
-  Dashboard here; <br/> <?php
-                        echo 'You are signed in as user ' . $_SESSION['user_id'];
-                        ?>
+
+    <h1>Dashboard</h1>
+    <p>Hello <?php echo $user['email']; ?>, you registered at <?php echo $user['date']; ?>
+    </p>
+    <p><a href="logout.php">Logout</a></p>
                 
 </div>
 
